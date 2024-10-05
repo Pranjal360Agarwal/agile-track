@@ -2,8 +2,8 @@
 
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import { setIsSidebarCollapsed } from "@/state";
-import { useGetAuthUserQuery, useGetProjectsQuery } from "@/state/api";
-import { signOut } from "aws-amplify/auth";
+
+
 import {
   AlertCircle,
   AlertOctagon,
@@ -31,19 +31,15 @@ const Sidebar = () => {
   const [showProjects, setShowProjects] = useState(true);
   const [showPriority, setShowPriority] = useState(true);
 
-  const { data: projects } = useGetProjectsQuery();
+
   const dispatch = useAppDispatch();
   const isSidebarCollapsed = useAppSelector(
     (state) => state.global.isSidebarCollapsed,
   );
 
-  const { data: currentUser } = useGetAuthUserQuery({});
+  const { data: currentUser } = ({});
   const handleSignOut = async () => {
-    try {
-      await signOut();
-    } catch (error) {
-      console.error("Error signing out: ", error);
-    }
+
   };
   if (!currentUser) return null;
   const currentUserDetails = currentUser?.userDetails;

@@ -3,8 +3,8 @@ import { Menu, Moon, Search, Settings, Sun, User } from "lucide-react";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import { setIsDarkMode, setIsSidebarCollapsed } from "@/state";
-import { useGetAuthUserQuery } from "@/state/api";
-import { signOut } from "aws-amplify/auth";
+
+
 import Image from "next/image";
 
 const Navbar = () => {
@@ -14,13 +14,9 @@ const Navbar = () => {
   );
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
 
-  const { data: currentUser } = useGetAuthUserQuery({});
+  const {currentUser } = ({});
   const handleSignOut = async () => {
-    try {
-      await signOut();
-    } catch (error) {
-      console.error("Error signing out: ", error);
-    }
+    
   };
 
   if (!currentUser) return null;
